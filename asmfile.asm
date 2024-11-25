@@ -4,9 +4,9 @@ section .text
   global dpasm
 
 dpasm:
-    ; rcx = n (size of vectors)
-    ; rdx = vecA (pointer to vector A)
-    ; r8 = vecB (pointer to vector B)
+    ; r8 = n (size of vectors)
+    ; rcx = vecA (pointer to vector A)
+    ; rdx = vecB (pointer to vector B)
     
     mov rax, 0           
     mov rbx, 0           
@@ -15,12 +15,12 @@ dpasm:
 
 dot_product:
     ; Compare loop counter (rax) with n (rcx)
-    cmp rax, rcx            
+    cmp rax, r8            
     jge done   
 
     ; Load A[i] into xmm0 and B[i] into xmm1
-    movsd xmm0, [rdx + rax*8]  
-    movsd xmm1, [r8 + rax*8]   
+    movsd xmm0, [rcx + rax*8]  
+    movsd xmm1, [rdx + rax*8]   
 
     ; Multiply A[i] and B[i], store result in xmm0
     mulsd xmm0, xmm1           

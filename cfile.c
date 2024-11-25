@@ -57,11 +57,10 @@ int main() {
         printf("%.2f ", B[i]);
     }
     printf("\n");
-
     // Call assembly function for dot product
     double result = dpasm(A, B, n);
-
-    printf("Dot product: %.6f\n", result);
+    
+    printf("\nDot product: %.6f\n", result);
 
     free(A);
     free(B);
