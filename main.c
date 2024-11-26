@@ -8,11 +8,21 @@
 extern void dot_product_asm(int n, double* A, double* B, double* sdot);
 
 // helper function to initialize vectors with random values
+/*
 void initialize_vectors(double* A, double* B, int n) {
     srand((unsigned)time(NULL)); // seed the random number generator
     for (int i = 0; i < n; i++) {
         A[i] = (double)rand() / (RAND_MAX + 1.0); // random double in [0.0, 1.0)
         B[i] = (double)rand() / (RAND_MAX + 1.0); // random double in [0.0, 1.0)
+    }
+}
+*/
+
+// helper function to initialize vectors with an alternating pattern of 1 and 2
+void initialize_vectors(double* A, double* B, int n) {
+    for (int i = 0; i < n; i++) {
+        A[i] = (i % 2 == 0) ? 1.0 : 2.0; // Alternates 1.0 and 2.0
+        B[i] = (i % 2 == 0) ? 2.0 : 1.0; // Alternates 2.0 and 1.0
     }
 }
 
@@ -79,6 +89,21 @@ void mini_test() {
     }
 }
 
+// Compare the average times of the two kernels
+void analyze_results(double avg_time_c, double avg_time_asm) {
+    printf("\n===== Time Analysis =====\n");
+    printf("C kernel average time: %.6f seconds\n", avg_time_c);
+    printf("Assembly kernel average time: %.6f seconds\n", avg_time_asm);
+
+    if (avg_time_c < avg_time_asm) {
+        printf("[C Kernel] runs faster than [Assembly Kernel].\n");
+    } else if (avg_time_asm < avg_time_c) {
+        printf("[Assembly Kernel] runs faster than [C Kernel].\n");
+    } else {
+        printf("Both kernels run at the same speed.\n");
+    }
+}
+
 int main() {
     // run mini test for n = 5 and n = 10
     mini_test();
@@ -117,6 +142,9 @@ int main() {
             printf("[fail] results differ!\n");
             printf("c kernel: %.6f | assembly kernel: %.6f\n", sdot_c, sdot_asm);
         }
+
+        // Compare the average times of both kernels
+        analyze_results(avg_time_c, avg_time_asm);
 
         // free allocated memory
         _aligned_free(A);
