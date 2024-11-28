@@ -8,23 +8,42 @@
 extern void dot_product_asm(int n, double* A, double* B, double* sdot);
 
 // helper function to initialize vectors with random values
-/*
+
 void initialize_vectors(double* A, double* B, int n) {
     srand((unsigned)time(NULL)); // seed the random number generator
     for (int i = 0; i < n; i++) {
-        A[i] = (double)rand() / (RAND_MAX + 1.0); // random double in [0.0, 1.0)
-        B[i] = (double)rand() / (RAND_MAX + 1.0); // random double in [0.0, 1.0)
+        A[i] = (double)rand() / RAND_MAX * 10.0; // random double in [0.0, 10.0]
+        B[i] = (double)rand() / RAND_MAX * 10.0; // random double in [0.0, 10.0]
     }
 }
-*/
+
 
 // helper function to initialize vectors with an alternating pattern of 1 and 2
+/*
 void initialize_vectors(double* A, double* B, int n) {
     for (int i = 0; i < n; i++) {
         A[i] = (i % 2 == 0) ? 1.0 : 2.0; // Alternates 1.0 and 2.0
         B[i] = (i % 2 == 0) ? 2.0 : 1.0; // Alternates 2.0 and 1.0
     }
 }
+*/
+
+// helper function to self-initialize vector values 
+/*
+void initialize_vectors(double* A, double* B, int n) {
+    printf("Enter %d elements for vector A:\n", n);
+    for (int i = 0; i < n; i++) {
+        printf("A[%d]: ", i);
+        scanf("%lf", &A[i]);
+    }
+
+    printf("Enter %d elements for vector B:\n", n);
+    for (int i = 0; i < n; i++) {
+        printf("B[%d]: ", i);
+        scanf("%lf", &B[i]);
+    }
+}
+*/
 
 // c implementation of the dot product
 void dot_product_c(int n, double* A, double* B, double* sdot) {
