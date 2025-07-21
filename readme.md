@@ -1,6 +1,6 @@
 # Dot Product Kernel (C and x86-64 Assembly Implementation)
 
-This repository contains the implementation of a dot product kernel of two vectors using both C and x86-64 assembly. It compares the performance and correctness of both implementations.
+This repository contains the implementation of a dot product kernel of two vectors using both C and x86-64 assembly. It compares the performance and correctness of both implementations. 
 
 ## Files
 
